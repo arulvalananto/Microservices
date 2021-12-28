@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import CommentCreate from "./CommentCreate";
 
 const PostList = () => {
   const [posts, setPosts] = useState([]);
@@ -19,7 +20,14 @@ const PostList = () => {
       <h1>Posts</h1>
       <div>
         {posts?.length ? (
-          posts?.map(({ id, title }) => <li key={id}>{title}</li>)
+          posts?.map(({ id, title }) => (
+            <div key={id} className="card" style={{ background: "#f1f1f1" }}>
+              <div className="card-body">
+                <h3 className="card-title">{title}</h3>
+                <CommentCreate />
+              </div>
+            </div>
+          ))
         ) : (
           <p>No posts available</p>
         )}
